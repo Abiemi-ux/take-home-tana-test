@@ -2,31 +2,32 @@ public class Question3_MakeZero {
 
     public static int canMakeZeros(int[] arr) {
         int n = arr.length;
+        int g = arr[0];
 
-        // Try to make all elements zero from the end
-        for (int i = n - 1; i >= 1; i--) {
-            if (arr[i] >= arr[i - 1]) {
-                arr[i] = arr[i] - arr[i - 1];
-            } else {
-                return 0; // can't subtract if the left one is bigger
-            }
-        }
-
-        // Now I check if all except the first are zero
         for (int i = 1; i < n; i++) {
-            if (arr[i] != 0) {
-                return 0;
-            }
+            g = gcd(g, arr[i]);
         }
 
-        return 1;
+        // If the gcd is equal to the first element, it is possible
+        if (g == arr[0]) {
+            return 1;
+        }
+        return 0;
+    }
+
+    // Helper function to compute gcd
+    private static int gcd(int a, int b) {
+        while (b != 0) {
+            int t = b;
+            b = a % b;
+            a = t;
+        }
+        return a;
     }
 
     public static void main(String[] args) {
-        int[] a = {1, 2, 3}; 
-
+        int[] a = {1, 2, 3};
         int result = canMakeZeros(a);
-
         System.out.println(result);
     }
 }

@@ -1,9 +1,9 @@
-public class Question5_MinDistance {
+package test_scripts;
 
+public class TestQuestion5 {
     public static int minDistance(int[] arr) {
         int n = arr.length;
 
-        // Step 1: Find minimum value
         int min = arr[0];
         for (int i = 1; i < n; i++) {
             if (arr[i] < min) {
@@ -11,9 +11,8 @@ public class Question5_MinDistance {
             }
         }
 
-        // Step 2: Find smallest distance between consecutive minimums
         int prevIndex = -1;
-        int minDist = n;  // Start with max possible distance
+        int minDist = n;
 
         for (int i = 0; i < n; i++) {
             if (arr[i] == min) {
@@ -31,10 +30,10 @@ public class Question5_MinDistance {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 1, 5, 2};
+        int[] arr = {1, 2, 3, 1, 4, 5, 2};
 
         int result = minDistance(arr);
 
-        System.out.println("The distance is " + result); 
+        System.out.println("Minimum distance between minimum values: " + result);
     }
 }
